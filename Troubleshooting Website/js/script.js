@@ -13,3 +13,8 @@ document.querySelectorAll('.answer-btn').forEach(btn=>btn.addEventListener('clic
 $('copyBtn').addEventListener('click',()=>{navigator.clipboard?.writeText($('checkCommand').textContent);showToast('Command copied')});$('resetBtn').addEventListener('click',()=>{current=0;answered=0;render();$('progressPercent').textContent='24%';showToast('Case reset')});
 document.querySelectorAll('.nav-item').forEach(item=>item.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));item.classList.add('active');const view=item.dataset.view;$('labView').classList.toggle('hidden',view!=='lab');$('conceptsView').classList.toggle('hidden',view!=='concepts');$('commandsView').classList.toggle('hidden',view!=='commands')}));
 function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),3000)}render();
+const themeToggle=$('themeToggle');
+function applyTheme(isDark){document.body.classList.toggle('dark-mode',isDark);themeToggle.querySelector('.theme-icon').textContent=isDark?'☀':'☾';themeToggle.querySelector('.theme-label').textContent=isDark?'Light mode':'Dark mode';themeToggle.setAttribute('aria-label',isDark?'Switch to light mode':'Switch to dark mode');themeToggle.title=isDark?'Switch to light mode':'Switch to dark mode'}
+const savedTheme=localStorage.getItem('packetpath-theme');
+applyTheme(savedTheme==='dark');
+themeToggle.addEventListener('click',()=>{const isDark=!document.body.classList.contains('dark-mode');applyTheme(isDark);localStorage.setItem('packetpath-theme',isDark?'dark':'light')});
