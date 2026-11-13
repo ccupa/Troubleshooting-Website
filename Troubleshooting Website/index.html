@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="dark.css">
   <link rel="stylesheet" href="scenario.css">
+  <link rel="stylesheet" href="library.css">
 </head>
 
 <body>
@@ -29,9 +30,9 @@
     <div class="sidebar-label">LEARNING PATH</div>
 
     <nav>
-      <button class="nav-item active" data-view="lab">
+      <button class="nav-item active" data-view="library">
         <span class="nav-icon">▦</span>
-        Troubleshooting lab
+        Problem library
       </button>
 
       <button class="nav-item" data-view="concepts">
@@ -73,7 +74,7 @@
   <main class="main-shell">
     <header class="topbar">
       <div class="breadcrumb">
-        LEARNING PATH <span>/</span> TROUBLESHOOTING LAB
+        LEARNING PATH <span>/</span> PROBLEM LIBRARY
       </div>
 
       <div class="top-actions">
@@ -97,16 +98,16 @@
 
     <section class="hero">
       <div>
-        <p class="eyebrow">CASE 01 · THE BASICS</p>
+        <p class="eyebrow">ENTRY-LEVEL IT SUPPORT</p>
 
         <h1>
-          Organize the problem<br>
-          <em>before</em> you chase it.
+          Start with the symptom.<br>
+          <em>Find the cause.</em>
         </h1>
 
         <p class="hero-copy">
-          Learn a repeatable way to find where a connection breaks —
-          one observable check at a time.
+          Practice the checks, questions, and fixes that help support
+          technicians solve everyday user problems.
         </p>
       </div>
 
@@ -127,7 +128,90 @@
       </div>
     </section>
 
-    <div id="labView" class="content-grid">
+    <section id="libraryView" class="library-view">
+      <div class="library-intro">
+        <div>
+          <p class="eyebrow">PROBLEM LIBRARY</p>
+
+          <h2>What does the user need help with?</h2>
+
+          <p>
+            Choose a familiar support ticket to practice a calm,
+            evidence-first troubleshooting process.
+          </p>
+        </div>
+
+        <div class="library-count">
+          <strong>01</strong>
+          <span>scenario ready</span>
+        </div>
+      </div>
+
+      <div class="category-row" aria-label="Problem categories">
+        <span class="category-chip active">Connectivity</span>
+        <span class="category-chip">Hardware</span>
+        <span class="category-chip">Accounts</span>
+        <span class="category-chip">Applications</span>
+      </div>
+
+      <div class="problem-grid">
+        <button class="problem-card featured-problem" data-scenario="internet">
+          <span class="problem-number">01</span>
+          <span class="problem-icon">⌁</span>
+          <span class="problem-type">CONNECTIVITY · READY TO TRY</span>
+          <strong>I can’t reach the internet.</strong>
+          <small>
+            Trace the connection from the device to DNS and the web service.
+          </small>
+          <span class="problem-action">Start scenario →</span>
+        </button>
+
+        <button class="problem-card" data-scenario="printer">
+          <span class="problem-number">02</span>
+          <span class="problem-icon">▣</span>
+          <span class="problem-type">HARDWARE · COMING NEXT</span>
+          <strong>The printer is not printing.</strong>
+          <small>
+            Check power, connectivity, queues, and the correct device.
+          </small>
+          <span class="problem-action">Preview scenario →</span>
+        </button>
+
+        <button class="problem-card" data-scenario="account">
+          <span class="problem-number">03</span>
+          <span class="problem-icon">◎</span>
+          <span class="problem-type">ACCOUNTS · COMING NEXT</span>
+          <strong>I can’t sign in.</strong>
+          <small>
+            Separate password, account, device, and access issues.
+          </small>
+          <span class="problem-action">Preview scenario →</span>
+        </button>
+
+        <button class="problem-card" data-scenario="application">
+          <span class="problem-number">04</span>
+          <span class="problem-icon">◇</span>
+          <span class="problem-type">APPLICATIONS · COMING NEXT</span>
+          <strong>The app will not open.</strong>
+          <small>
+            Work from the user’s symptom toward the smallest likely cause.
+          </small>
+          <span class="problem-action">Preview scenario →</span>
+        </button>
+      </div>
+
+      <div class="library-tip">
+        <span>✦</span>
+
+        <p>
+          <strong>Good support starts with a good question.</strong>
+          Pick the symptom that best matches the user’s report, then test one
+          part of the system at a time.
+        </p>
+      </div>
+    </section>
+
+    <div id="labView" class="content-grid hidden">
       <section class="workspace-card">
         <div class="card-top">
           <div>
