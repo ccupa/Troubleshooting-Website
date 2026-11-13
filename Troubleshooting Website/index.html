@@ -1,20 +1,22 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>PacketPath — Network troubleshooting, made orderly</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"
+  >
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="dark.css" />
-  <link rel="stylesheet" href="scenario.css" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dark.css">
+  <link rel="stylesheet" href="scenario.css">
 </head>
 
 <body>
@@ -77,7 +79,12 @@
       <div class="top-actions">
         <button class="icon-button" aria-label="Search">⌕</button>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Switch to dark mode"
+          title="Switch to dark mode"
+        >
           <span class="theme-icon">☾</span>
           <span class="theme-label">Dark mode</span>
         </button>
@@ -115,8 +122,7 @@
 
         <div class="art-label">
           WORK<br>
-          LEFT →
-          RIGHT
+          LEFT → RIGHT
         </div>
       </div>
     </section>
@@ -179,7 +185,10 @@
 
           <div class="command-box">
             <span class="terminal-dot"></span>
-            <code id="checkCommand">ipconfig /all</code>
+
+            <code id="checkCommand">
+              ipconfig /all
+            </code>
 
             <button class="copy-btn" id="copyBtn">
               Copy
@@ -205,6 +214,34 @@
               </span>
             </button>
           </div>
+
+          <div
+            id="evidencePanel"
+            class="evidence-panel hidden"
+            aria-live="polite"
+          >
+            <div class="evidence-heading">
+              <span class="evidence-icon">✓</span>
+
+              <div>
+                <strong id="evidenceTitle">Observed result</strong>
+                <small id="evidenceStatus">
+                  Evidence from this check
+                </small>
+              </div>
+            </div>
+
+            <div class="terminal-output">
+              <span class="output-prompt">$</span>
+              <code id="evidenceOutput"></code>
+            </div>
+
+            <p id="evidenceMeaning" class="evidence-meaning"></p>
+
+            <button id="continueBtn" class="continue-btn">
+              Continue to next check →
+            </button>
+          </div>
         </article>
 
         <div class="coach-note">
@@ -216,6 +253,45 @@
             connection, a DNS test can only distract you.
           </p>
         </div>
+      </section>
+
+      <section
+        id="completePanel"
+        class="complete-panel hidden"
+        aria-live="polite"
+      >
+        <div class="complete-mark">✓</div>
+
+        <p class="eyebrow">CASE COMPLETE</p>
+
+        <h2>Web access restored.</h2>
+
+        <p>
+          You located the failed layer, corrected the DNS path, and verified
+          the service again. That is the troubleshooting loop: observe,
+          isolate, fix, confirm.
+        </p>
+
+        <div class="resolution-summary">
+          <div>
+            <span>SYMPTOM</span>
+            <strong>Websites would not load</strong>
+          </div>
+
+          <div>
+            <span>ROOT CAUSE</span>
+            <strong>DNS resolution failure</strong>
+          </div>
+
+          <div>
+            <span>FIX</span>
+            <strong>Correct DNS settings, then retest</strong>
+          </div>
+        </div>
+
+        <button id="restartBtn" class="continue-btn">
+          Run the case again ↺
+        </button>
       </section>
 
       <aside class="insight-card">
@@ -268,6 +344,7 @@
 
           <div>
             <strong>One change at a time</strong>
+
             <p>
               Change one thing, then test again. This is how you know what
               fixed it.
@@ -280,6 +357,7 @@
 
           <div>
             <strong>Stuck?</strong>
+
             <p>
               Read the explanation under each answer. The “why” is the skill.
             </p>
@@ -370,5 +448,4 @@
 
   <script src="js/script.js"></script>
 </body>
-
 </html>
