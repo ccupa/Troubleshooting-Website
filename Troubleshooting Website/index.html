@@ -1,18 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PacketPath — Network troubleshooting, made orderly</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="dark.css">
@@ -80,12 +75,7 @@
       <div class="top-actions">
         <button class="icon-button" aria-label="Search">⌕</button>
 
-        <button
-          class="theme-toggle"
-          id="themeToggle"
-          aria-label="Switch to dark mode"
-          title="Switch to dark mode"
-        >
+        <button class="theme-toggle" id="themeToggle">
           <span class="theme-icon">☾</span>
           <span class="theme-label">Dark mode</span>
         </button>
@@ -132,9 +122,7 @@
       <div class="library-intro">
         <div>
           <p class="eyebrow">PROBLEM LIBRARY</p>
-
           <h2>What does the user need help with?</h2>
-
           <p>
             Choose a familiar support ticket to practice a calm,
             evidence-first troubleshooting process.
@@ -142,12 +130,12 @@
         </div>
 
         <div class="library-count">
-          <strong>01</strong>
-          <span>scenario ready</span>
+          <strong>02</strong>
+          <span>scenarios ready</span>
         </div>
       </div>
 
-      <div class="category-row" aria-label="Problem categories">
+      <div class="category-row">
         <span class="category-chip active">Connectivity</span>
         <span class="category-chip">Hardware</span>
         <span class="category-chip">Accounts</span>
@@ -166,15 +154,15 @@
           <span class="problem-action">Start scenario →</span>
         </button>
 
-        <button class="problem-card" data-scenario="printer">
+        <button class="problem-card featured-problem" data-scenario="printer">
           <span class="problem-number">02</span>
           <span class="problem-icon">▣</span>
-          <span class="problem-type">HARDWARE · COMING NEXT</span>
+          <span class="problem-type">HARDWARE · READY TO TRY</span>
           <strong>The printer is not printing.</strong>
           <small>
             Check power, connectivity, queues, and the correct device.
           </small>
-          <span class="problem-action">Preview scenario →</span>
+          <span class="problem-action">Start scenario →</span>
         </button>
 
         <button class="problem-card" data-scenario="account">
@@ -216,7 +204,7 @@
         <div class="card-top">
           <div>
             <p class="eyebrow">LIVE SCENARIO</p>
-            <h2>“I can’t reach the internet.”</h2>
+            <h2 id="scenarioTitle">“I can’t reach the internet.”</h2>
           </div>
 
           <div class="scenario-tag">
@@ -228,7 +216,7 @@
         <div class="context-strip">
           <div class="context-icon">i</div>
 
-          <p>
+          <p id="scenarioContext">
             <strong>Context</strong> · A user’s laptop connects to the office
             Wi-Fi, but websites will not load. Start at the user’s device and
             move outward.
@@ -269,10 +257,7 @@
 
           <div class="command-box">
             <span class="terminal-dot"></span>
-
-            <code id="checkCommand">
-              ipconfig /all
-            </code>
+            <code id="checkCommand">ipconfig /all</code>
 
             <button class="copy-btn" id="copyBtn">
               Copy
@@ -299,11 +284,7 @@
             </button>
           </div>
 
-          <div
-            id="evidencePanel"
-            class="evidence-panel hidden"
-            aria-live="polite"
-          >
+          <div id="evidencePanel" class="evidence-panel hidden">
             <div class="evidence-heading">
               <span class="evidence-icon">✓</span>
 
@@ -339,37 +320,34 @@
         </div>
       </section>
 
-      <section
-        id="completePanel"
-        class="complete-panel hidden"
-        aria-live="polite"
-      >
+      <section id="completePanel" class="complete-panel hidden">
         <div class="complete-mark">✓</div>
 
         <p class="eyebrow">CASE COMPLETE</p>
 
-        <h2>Web access restored.</h2>
+        <h2 id="completeTitle">Web access restored.</h2>
 
-        <p>
+        <p id="completeMessage">
           You located the failed layer, corrected the DNS path, and verified
-          the service again. That is the troubleshooting loop: observe,
-          isolate, fix, confirm.
+          the service again.
         </p>
 
         <div class="resolution-summary">
           <div>
             <span>SYMPTOM</span>
-            <strong>Websites would not load</strong>
+            <strong id="summarySymptom">Websites would not load</strong>
           </div>
 
           <div>
             <span>ROOT CAUSE</span>
-            <strong>DNS resolution failure</strong>
+            <strong id="summaryCause">DNS resolution failure</strong>
           </div>
 
           <div>
             <span>FIX</span>
-            <strong>Correct DNS settings, then retest</strong>
+            <strong id="summaryFix">
+              Correct DNS settings, then retest
+            </strong>
           </div>
         </div>
 
@@ -397,7 +375,7 @@
               <small>Wi-Fi · adapter · IP</small>
             </div>
 
-            <span class="layer-state" id="deviceState">NOW</span>
+            <span class="layer-state">NOW</span>
           </div>
 
           <div class="map-connector"></div>
