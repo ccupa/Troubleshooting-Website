@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="library.css">
   <link rel="stylesheet" href="filters.css">
   <link rel="stylesheet" href="learning.css">
+  <link rel="stylesheet" href="habits.css">
 </head>
 
 <body>
@@ -48,28 +49,37 @@
       </button>
     </nav>
 
-    <div class="sidebar-label progress-label">YOUR PROGRESS</div>
-
-    <div class="progress-ring-wrap">
-      <div class="progress-ring">
-        <span id="progressPercent">24%</span>
-      </div>
-
-      <div>
-        <strong>Foundations</strong>
-        <small>6 of 25 checks</small>
-      </div>
+    <div class="sidebar-label habits-label">
+      TROUBLESHOOTING HABITS
     </div>
 
-    <div class="sidebar-footer">
-      <div class="avatar">CC</div>
+    <div class="habits-card">
+      <div class="habit-item">
+        <span>01</span>
 
-      <div>
-        <strong>Keep going, Carlos</strong>
-        <small>Entry-level track</small>
+        <div>
+          <strong>Start with the symptom</strong>
+          <small>Clarify what the user actually sees.</small>
+        </div>
       </div>
 
-      <span class="dots">•••</span>
+      <div class="habit-item">
+        <span>02</span>
+
+        <div>
+          <strong>Test one part at a time</strong>
+          <small>Let each result narrow the cause.</small>
+        </div>
+      </div>
+
+      <div class="habit-item">
+        <span>03</span>
+
+        <div>
+          <strong>Confirm the fix</strong>
+          <small>Test again before closing the ticket.</small>
+        </div>
+      </div>
     </div>
   </aside>
 
@@ -281,6 +291,7 @@
         <div class="card-top">
           <div>
             <p class="eyebrow">LIVE SCENARIO</p>
+
             <h2 id="scenarioTitle">
               “I can’t reach the internet.”
             </h2>
@@ -337,7 +348,9 @@
           <div class="command-box">
             <span class="terminal-dot"></span>
 
-            <code id="checkCommand">ipconfig /all</code>
+            <code id="checkCommand">
+              ipconfig /all
+            </code>
 
             <button class="copy-btn" id="copyBtn">
               Copy

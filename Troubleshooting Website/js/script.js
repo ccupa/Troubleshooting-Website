@@ -240,9 +240,6 @@ $("continueBtn").addEventListener("click", () => {
 
   answered = Math.max(answered, current + 1);
 
-  $("progressPercent").textContent =
-    `${Math.round(((6 + answered) / 25) * 100)}%`;
-
   if (current < scenario.checks.length - 1) {
     current++;
     render();
@@ -265,7 +262,6 @@ function resetCase() {
   current = 0;
   answered = 0;
 
-  $("progressPercent").textContent = "24%";
   $("completePanel").classList.add("hidden");
   $("labView").classList.remove("hidden");
 
