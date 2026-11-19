@@ -1,0 +1,14 @@
+.category-chip {
+  font: 500 11px "DM Sans";
+  cursor: pointer;
+}
+
+.category-chip:hover {
+  border-color: #a7cdbb;
+  color: #0e5e5b;
+}
+
+.dark-mode .category-chip:hover {
+  border-color: #67c8b0;
+  color: #67c8b0;
+}

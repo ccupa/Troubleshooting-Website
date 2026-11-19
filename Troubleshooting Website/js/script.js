@@ -346,6 +346,23 @@ document.querySelectorAll(".problem-card").forEach(card => {
   });
 });
 
+document.querySelectorAll(".category-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    const category = chip.dataset.category;
+
+    document.querySelectorAll(".category-chip").forEach(item => {
+      const isActive = item === chip;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    document.querySelectorAll(".problem-card").forEach(card => {
+      const showCard = category === "all" || card.dataset.category === category;
+      card.classList.toggle("hidden", !showCard);
+    });
+  });
+});
+
 function showToast(message) {
   const toast = $("toast");
 
