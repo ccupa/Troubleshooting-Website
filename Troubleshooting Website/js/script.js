@@ -14,6 +14,12 @@ const scenarios = {
     cause: "DNS resolution failure",
     fix: "Correct DNS settings, then retest",
 
+    layers: [
+      ["Device", "Wi-Fi · adapter · IP"],
+      ["Local network", "Gateway · switch · AP"],
+      ["Beyond the LAN", "DNS · routing · ISP"]
+    ],
+
     checks: [
       {
         title: "Is the device connected to the network?",
@@ -87,6 +93,12 @@ const scenarios = {
     cause: "Paused print queue",
     fix: "Resume the queue, clear the stuck job, then print a test page",
 
+    layers: [
+      ["Printer", "Power · paper · toner"],
+      ["Network path", "Wi-Fi · cable · IP"],
+      ["Print service", "Driver · queue · job"]
+    ],
+
     checks: [
       {
         title: "Is the printer powered on and ready?",
@@ -134,6 +146,128 @@ const scenarios = {
         fix: "Check the printer driver and service logs if the test page still fails."
       }
     ]
+  },
+
+  account: {
+    title: "“I can’t sign in.”",
+
+    context:
+      "<strong>Context</strong> · A user cannot sign in to their work account. Start with the information the user entered, then check the account state before changing anything.",
+
+    completeTitle: "Sign-in restored.",
+
+    completeMessage:
+      "You confirmed the account, identified an expired password, reset it safely, and verified that the user could sign in again.",
+
+    symptom: "User could not sign in",
+    cause: "Expired password",
+    fix: "Reset the password and confirm a successful sign-in",
+
+    layers: [
+      ["User input", "Username · password · domain"],
+      ["Account", "Locked · disabled · expired"],
+      ["Access", "MFA · groups · application"]
+    ],
+
+    checks: [
+      {
+        title: "Is the user entering the correct account?",
+        desc: "Confirm the username and organization or domain before changing the password. A small spelling mistake can look like an account problem.",
+        command: "Check username",
+        output: "Username: jlee · Domain: NORTHSTAR",
+        meaning: "The user is entering the expected work account. Next, check the account’s state.",
+        pass: true,
+        fix: "Confirm the correct username and sign-in domain with the user."
+      },
+      {
+        title: "Is the account locked or disabled?",
+        desc: "Review the account status in the identity system. Do not reset credentials until you know whether the account is active.",
+        command: "Get-ADUser -Identity jlee -Properties LockedOut,Enabled",
+        output: "LockedOut: False · Enabled: True",
+        meaning: "The account is active and not locked. The next check should focus on the password itself.",
+        pass: true,
+        fix: "Unlock or enable the account, then retry sign-in."
+      },
+      {
+        title: "Is the password still valid?",
+        desc: "Use the sign-in result or identity-system status to determine whether the password is expired or rejected.",
+        command: "Test sign-in",
+        output: "Authentication failed · Reason: Password expired",
+        meaning: "This is the first failed layer. The account is valid, but its password is expired.",
+        pass: false,
+        fix: "Reset the password using the approved support process, then have the user try again."
+      },
+      {
+        title: "Can the user sign in after the reset?",
+        desc: "Verify the fix with the user. A successful sign-in confirms that the account and password path are working.",
+        command: "Test sign-in",
+        output: "Authentication successful · Session created",
+        meaning: "The user can sign in again. Document the evidence and close the ticket.",
+        pass: true,
+        fix: "Check MFA or application access if the user can sign in but still cannot reach a resource."
+      }
+    ]
+  },
+
+  application: {
+    title: "“The app will not open.”",
+
+    context:
+      "<strong>Context</strong> · A user clicks the AcmeDesk app, but no usable window appears. Start with installation, then check the app’s dependencies and service path.",
+
+    completeTitle: "Application opened.",
+
+    completeMessage:
+      "You confirmed the app was installed, found a missing runtime dependency, repaired it, and verified that the application opened.",
+
+    symptom: "AcmeDesk would not open",
+    cause: "Missing desktop runtime",
+    fix: "Install the required runtime, then reopen the application",
+
+    layers: [
+      ["Application", "Installed · process · settings"],
+      ["Dependencies", "Runtime · files · updates"],
+      ["Service path", "Network · server · account"]
+    ],
+
+    checks: [
+      {
+        title: "Is the application installed?",
+        desc: "Confirm that the expected application is installed before changing settings or reinstalling anything.",
+        command: "Get-Package -Name AcmeDesk",
+        output: "AcmeDesk 4.2.1 · Installed",
+        meaning: "The application is installed. Next, check whether it can start with its required files.",
+        pass: true,
+        fix: "Install the approved application package, then try opening it again."
+      },
+      {
+        title: "Does the application start successfully?",
+        desc: "Launch the application and observe whether a window appears or an error is recorded.",
+        command: "Start-Process AcmeDesk",
+        output: "Process closed immediately · Error: Desktop runtime not found",
+        meaning: "This is the first failed layer. The application is installed, but its required runtime is missing.",
+        pass: false,
+        fix: "Install or repair the approved desktop runtime, then relaunch the app."
+      },
+      {
+        title: "Can the app reach its service?",
+        desc: "After repairing the dependency, check the application’s server path before asking the user to retry a real task.",
+        command: "Test-NetConnection appserver.northstar.local -Port 443",
+        output: "TcpTestSucceeded: True",
+        meaning: "The service path is reachable. The remaining confirmation is to open the app again.",
+        pass: true,
+        fix: "Check VPN, DNS, firewall, or service status if the connection test fails."
+      },
+      {
+        title: "Does the application open after the repair?",
+        desc: "Launch the app again and confirm that the user can see the normal sign-in or home screen.",
+        command: "Start-Process AcmeDesk",
+        output: "Process running · Window detected · Ready for sign-in",
+        meaning: "The application opens normally. Document the evidence and close the ticket.",
+        pass: true,
+        fix: "Review application logs or reinstall the app if it still closes immediately."
+      }
+    ]
   }
 };
 
@@ -170,9 +304,12 @@ function render() {
     : "Type the command you would run for this check.";
   $("commandInput").placeholder = isPrinter ? "Type a support check..." : "Type a command...";
   $("runCommandBtn").textContent = isPrinter ? "Try check" : "Run";
-  const suggestions = isPrinter
-    ? [["Check printer display", "Printer status"], ["ping PRINTER-04", "ping"], ["Get-PrintJob -PrinterName \"Office Printer 04\"", "Print queue"], ["help", "help"]]
-    : [["ipconfig /all", "ipconfig /all"], ["ping 192.168.1.1", "ping"], ["nslookup example.com", "nslookup"], ["help", "help"]];
+  const suggestions = {
+    internet: [["ipconfig /all", "ipconfig /all"], ["ping 192.168.1.1", "ping"], ["nslookup example.com", "nslookup"], ["help", "help"]],
+    printer: [["Check printer display", "Printer status"], ["ping PRINTER-04", "ping"], ["Get-PrintJob -PrinterName \"Office Printer 04\"", "Print queue"], ["help", "help"]],
+    account: [["Check username", "Username"], ["Get-ADUser -Identity jlee", "Account status"], ["Test sign-in", "Test sign-in"], ["help", "help"]],
+    application: [["Get-Package -Name AcmeDesk", "Installation"], ["Start-Process AcmeDesk", "Start app"], ["Test-NetConnection appserver.northstar.local -Port 443", "Service path"], ["help", "help"]]
+  }[activeScenario];
   ["suggestionOne", "suggestionTwo", "suggestionThree", "suggestionFour"].forEach((id, index) => { $(id).dataset.commandSuggestion = suggestions[index][0]; $(id).textContent = suggestions[index][1]; });
   $("commandInput").value = "";
   $("practiceOutput").textContent = "";
@@ -190,6 +327,13 @@ function render() {
   $("summaryFix").textContent = scenario.fix;
 
   document.querySelectorAll(".layer").forEach((layer, index) => {
+    const layerData = scenario.layers[index];
+
+    if (layerData) {
+      layer.querySelector("strong").textContent = layerData[0];
+      layer.querySelector("small").textContent = layerData[1];
+    }
+
     layer.classList.toggle(
       "active-layer",
       index === Math.min(2, Math.floor(current / 2))
@@ -284,9 +428,13 @@ function runPracticeCommand() {
       ? "Type a support check first. Try the check shown above or select a suggestion."
       : "Type a command first. Try the command shown above or select a suggestion.";
   } else if (input === "help") {
-    output.textContent = activeScenario === "printer"
-      ? "Available practice checks: check printer display, ping, print queue, print test page, help"
-      : "Available practice commands: ipconfig /all, ping, nslookup, curl, help";
+    const helpText = {
+      internet: "Available practice commands: ipconfig /all, ping, nslookup, curl, help",
+      printer: "Available practice checks: check printer display, ping, print queue, print test page, help",
+      account: "Available practice checks: check username, account status, test sign-in, help",
+      application: "Available practice commands: Get-Package, Start-Process, Test-NetConnection, help"
+    };
+    output.textContent = helpText[activeScenario];
   } else if (commandMatches(input, expected)) {
     output.textContent = `${check.command}\n${check.output}\n\nWhat this means: ${check.meaning}`;
   } else {
