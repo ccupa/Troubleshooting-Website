@@ -470,6 +470,61 @@
           </div>
         </div>
 
+        <section class="ticket-notes" aria-labelledby="ticketNotesTitle">
+          <div class="ticket-notes-heading">
+            <p class="eyebrow">DOCUMENT THE TICKET</p>
+
+            <h3 id="ticketNotesTitle">
+              Turn your evidence into a clear handoff.
+            </h3>
+
+            <p>
+              A good technician records what the user saw, what the checks
+              showed, and what restored the service.
+            </p>
+          </div>
+
+          <div class="ticket-form">
+            <label>
+              User symptom
+
+              <textarea
+                id="ticketSymptom"
+                rows="2"
+                placeholder="What did the user report?"
+              ></textarea>
+            </label>
+
+            <label>
+              Evidence found
+
+              <textarea
+                id="ticketEvidence"
+                rows="2"
+                placeholder="What result identified the failed layer?"
+              ></textarea>
+            </label>
+
+            <label>
+              Cause and fix
+
+              <textarea
+                id="ticketResolution"
+                rows="2"
+                placeholder="What caused the issue, and what fixed it?"
+              ></textarea>
+            </label>
+          </div>
+
+          <button id="saveTicketBtn" class="continue-btn">
+            Save ticket summary
+          </button>
+
+          <p id="ticketSaved" class="ticket-saved hidden" role="status">
+            Ticket summary saved for this practice session.
+          </p>
+        </section>
+
         <div class="method-loop">
           <span>1</span>
           <strong>Observe</strong>

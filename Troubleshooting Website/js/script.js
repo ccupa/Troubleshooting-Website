@@ -403,6 +403,7 @@ $("continueBtn").addEventListener("click", () => {
     current++;
     render();
   } else {
+    resetTicketNotes();
     $("labView").classList.add("hidden");
     $("completePanel").classList.remove("hidden");
     showToast("Scenario complete — nice work.");
@@ -468,6 +469,7 @@ document.querySelectorAll("[data-command-suggestion]").forEach(button => {
 function resetCase() {
   current = 0;
   answered = 0;
+  resetTicketNotes();
 
   $("completePanel").classList.add("hidden");
   $("labView").classList.remove("hidden");
@@ -475,6 +477,27 @@ function resetCase() {
   render();
   showToast("Scenario reset");
 }
+
+function resetTicketNotes() {
+  ["ticketSymptom", "ticketEvidence", "ticketResolution"].forEach(id => {
+    if ($(id)) $(id).value = "";
+  });
+
+  $("ticketSaved")?.classList.add("hidden");
+}
+
+$("saveTicketBtn").addEventListener("click", () => {
+  const fields = ["ticketSymptom", "ticketEvidence", "ticketResolution"];
+  const complete = fields.every(id => $(id).value.trim());
+
+  if (!complete) {
+    showToast("Complete all three ticket fields first");
+    return;
+  }
+
+  $("ticketSaved").classList.remove("hidden");
+  showToast("Ticket summary saved");
+});
 
 function openScenario(name) {
   activeScenario = name;
