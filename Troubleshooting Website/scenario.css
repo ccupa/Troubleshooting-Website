@@ -249,6 +249,125 @@
   color: #67c8b0;
 }
 
+.saved-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.saved-header h2 {
+  margin: 0 0 8px;
+  font: 700 28px "Space Grotesk";
+  letter-spacing: -0.8px;
+}
+
+.saved-header .section-intro {
+  margin: 0;
+}
+
+.saved-ticket-list {
+  display: grid;
+  gap: 12px;
+}
+
+.saved-ticket-empty {
+  margin: 0;
+  padding: 28px;
+  border: 1px dashed #c8dbd0;
+  border-radius: 10px;
+  color: #718078;
+  background: #f7fbf8;
+  text-align: center;
+  font-size: 12px;
+}
+
+.saved-ticket-card {
+  padding: 18px;
+  border: 1px solid #d9e8df;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(31, 67, 53, 0.05);
+}
+
+.saved-ticket-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #e5eee8;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.saved-ticket-header h3 {
+  margin: 0;
+  color: #344c42;
+  font: 700 16px "Space Grotesk";
+}
+
+.saved-ticket-header small {
+  color: #8a9a91;
+  font-size: 10px;
+}
+
+.saved-ticket-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.saved-ticket-details strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #f47745;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.saved-ticket-details p {
+  margin: 0;
+  color: #64786d;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.delete-ticket-btn {
+  margin-top: 14px;
+  border: 0;
+  background: transparent;
+  color: #b15d42;
+  cursor: pointer;
+  font: 700 10px "DM Sans";
+  padding: 0;
+}
+
+.delete-ticket-btn:hover {
+  color: #8f3d29;
+  text-decoration: underline;
+}
+
+.dark-mode .saved-ticket-empty,
+.dark-mode .saved-ticket-card {
+  background: #20322f;
+  border-color: #38514a;
+}
+
+.dark-mode .saved-ticket-empty,
+.dark-mode .saved-ticket-details p {
+  color: #a9c4b8;
+}
+
+.dark-mode .saved-ticket-header {
+  border-color: #38514a;
+}
+
+.dark-mode .saved-ticket-header h3 {
+  color: #edf6f0;
+}
+
 /* Dark mode */
 
 .dark-mode .evidence-panel {
@@ -305,6 +424,21 @@
   }
 
   .ticket-form {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-header,
+  .saved-ticket-header {
+    display: block;
+  }
+
+  .saved-header .text-button,
+  .saved-ticket-header small {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .saved-ticket-details {
     grid-template-columns: 1fr;
   }
 

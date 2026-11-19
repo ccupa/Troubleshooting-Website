@@ -43,6 +43,11 @@
         <span class="nav-icon">⌘</span>
         Command cards
       </button>
+
+      <button class="nav-item" data-view="saved">
+        <span class="nav-icon">▤</span>
+        Saved tickets
+      </button>
     </nav>
 
     <div class="sidebar-label habits-label">TROUBLESHOOTING HABITS</div>
@@ -328,7 +333,6 @@
 
           <div class="command-box">
             <span class="terminal-dot"></span>
-
             <code id="checkCommand">ipconfig /all</code>
 
             <button class="copy-btn" id="copyBtn">
@@ -715,6 +719,26 @@
           </span>
         </div>
       </div>
+    </section>
+
+    <section id="savedView" class="alternate-view hidden">
+      <div class="saved-header">
+        <div>
+          <p class="eyebrow">SAVED TICKETS</p>
+
+          <h2>Review your troubleshooting notes.</h2>
+
+          <p class="section-intro">
+            These summaries are saved only in this browser on this device.
+          </p>
+        </div>
+
+        <button id="clearSavedBtn" class="text-button">
+          Clear all
+        </button>
+      </div>
+
+      <div id="savedTicketList" class="saved-ticket-list"></div>
     </section>
 
     <footer>

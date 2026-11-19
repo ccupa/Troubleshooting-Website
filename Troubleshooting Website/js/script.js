@@ -274,6 +274,7 @@ const scenarios = {
 let activeScenario = "internet";
 let current = 0;
 let answered = 0;
+const ticketStorageKey = "packetpath-saved-tickets";
 
 const $ = id => document.getElementById(id);
 
@@ -495,8 +496,103 @@ $("saveTicketBtn").addEventListener("click", () => {
     return;
   }
 
+  const tickets = loadSavedTickets();
+
+  tickets.unshift({
+    id: Date.now().toString(),
+    scenario: scenarios[activeScenario].title,
+    symptom: $("ticketSymptom").value.trim(),
+    evidence: $("ticketEvidence").value.trim(),
+    resolution: $("ticketResolution").value.trim(),
+    savedAt: new Date().toISOString()
+  });
+
+  localStorage.setItem(ticketStorageKey, JSON.stringify(tickets.slice(0, 20)));
+  renderSavedTickets();
   $("ticketSaved").classList.remove("hidden");
   showToast("Ticket summary saved");
+});
+
+function loadSavedTickets() {
+  try {
+    return JSON.parse(localStorage.getItem(ticketStorageKey)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function renderSavedTickets() {
+  const list = $("savedTicketList");
+  const tickets = loadSavedTickets();
+
+  list.replaceChildren();
+
+  if (!tickets.length) {
+    const empty = document.createElement("p");
+    empty.className = "saved-ticket-empty";
+    empty.textContent = "No saved tickets yet. Complete a scenario and save your notes to see them here.";
+    list.appendChild(empty);
+    return;
+  }
+
+  tickets.forEach(ticket => {
+    const card = document.createElement("article");
+    card.className = "saved-ticket-card";
+
+    const header = document.createElement("div");
+    header.className = "saved-ticket-header";
+
+    const title = document.createElement("h3");
+    title.textContent = ticket.scenario;
+
+    const date = document.createElement("small");
+    date.textContent = new Date(ticket.savedAt).toLocaleString();
+
+    header.append(title, date);
+
+    const details = document.createElement("div");
+    details.className = "saved-ticket-details";
+
+    [["Symptom", ticket.symptom], ["Evidence", ticket.evidence], ["Cause and fix", ticket.resolution]].forEach(([label, value]) => {
+      const detail = document.createElement("div");
+      const detailLabel = document.createElement("strong");
+      const detailText = document.createElement("p");
+
+      detailLabel.textContent = label;
+      detailText.textContent = value;
+      detail.append(detailLabel, detailText);
+      details.appendChild(detail);
+    });
+
+    const removeButton = document.createElement("button");
+    removeButton.className = "delete-ticket-btn";
+    removeButton.dataset.ticketId = ticket.id;
+    removeButton.textContent = "Delete ticket";
+
+    card.append(header, details, removeButton);
+    list.appendChild(card);
+  });
+}
+
+$("savedTicketList").addEventListener("click", event => {
+  const button = event.target.closest("[data-ticket-id]");
+  if (!button) return;
+
+  const tickets = loadSavedTickets().filter(ticket => ticket.id !== button.dataset.ticketId);
+  localStorage.setItem(ticketStorageKey, JSON.stringify(tickets));
+  renderSavedTickets();
+  showToast("Ticket deleted");
+});
+
+$("clearSavedBtn").addEventListener("click", () => {
+  if (!loadSavedTickets().length) {
+    showToast("There are no saved tickets to clear");
+    return;
+  }
+
+  localStorage.removeItem(ticketStorageKey);
+  renderSavedTickets();
+  showToast("Saved tickets cleared");
 });
 
 function openScenario(name) {
@@ -507,6 +603,9 @@ function openScenario(name) {
   $("libraryView").classList.add("hidden");
   $("labView").classList.remove("hidden");
   $("completePanel").classList.add("hidden");
+  $("conceptsView").classList.add("hidden");
+  $("commandsView").classList.add("hidden");
+  $("savedView").classList.add("hidden");
 
   document.querySelectorAll(".nav-item").forEach(nav => {
     nav.classList.toggle(
@@ -558,6 +657,11 @@ document.querySelectorAll(".nav-item").forEach(item => {
     $("commandsView").classList.toggle(
       "hidden",
       view !== "commands"
+    );
+
+    $("savedView").classList.toggle(
+      "hidden",
+      view !== "saved"
     );
   });
 });
@@ -633,4 +737,5 @@ themeToggle.addEventListener("click", () => {
   );
 });
 
+renderSavedTickets();
 render();
