@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="filters.css">
   <link rel="stylesheet" href="learning.css">
   <link rel="stylesheet" href="habits.css">
+  <link rel="stylesheet" href="practice.css">
 </head>
 
 <body>
@@ -56,6 +57,7 @@
     <div class="habits-card">
       <div class="habit-item">
         <span>01</span>
+
         <div>
           <strong>Start with the symptom</strong>
           <small>Clarify what the user actually sees.</small>
@@ -64,6 +66,7 @@
 
       <div class="habit-item">
         <span>02</span>
+
         <div>
           <strong>Test one part at a time</strong>
           <small>Let each result narrow the cause.</small>
@@ -72,6 +75,7 @@
 
       <div class="habit-item">
         <span>03</span>
+
         <div>
           <strong>Confirm the fix</strong>
           <small>Test again before closing the ticket.</small>
@@ -356,6 +360,56 @@
             <button class="copy-btn" id="copyBtn">
               Copy
             </button>
+          </div>
+
+          <div class="practice-panel">
+            <div class="practice-heading">
+              <div>
+                <span class="check-kicker">PRACTICE THE COMMAND</span>
+                <small>
+                  Type the command you would run for this check.
+                </small>
+              </div>
+
+              <span class="practice-safe">SIMULATED</span>
+            </div>
+
+            <div class="practice-input-row">
+              <span class="practice-prompt">
+                PS C:\Support&gt;
+              </span>
+
+              <input
+                id="commandInput"
+                type="text"
+                placeholder="Type a command..."
+                autocomplete="off"
+              >
+
+              <button id="runCommandBtn" class="run-command-btn">
+                Run
+              </button>
+            </div>
+
+            <div class="command-suggestions">
+              <button data-command-suggestion="ipconfig /all">
+                ipconfig /all
+              </button>
+
+              <button data-command-suggestion="ping 192.168.1.1">
+                ping
+              </button>
+
+              <button data-command-suggestion="nslookup example.com">
+                nslookup
+              </button>
+
+              <button data-command-suggestion="help">
+                help
+              </button>
+            </div>
+
+            <pre id="practiceOutput" class="practice-output hidden"></pre>
           </div>
 
           <div class="answer-row">

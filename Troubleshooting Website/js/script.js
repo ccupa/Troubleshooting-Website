@@ -162,6 +162,9 @@ function render() {
   $("checkTitle").textContent = check.title;
   $("checkDescription").textContent = check.desc;
   $("checkCommand").textContent = check.command;
+  $("commandInput").value = "";
+  $("practiceOutput").textContent = "";
+  $("practiceOutput").classList.add("hidden");
 
   $("stepLineFill").style.width =
     `${((current + 1) / scenario.checks.length) * 100}%`;
@@ -256,6 +259,46 @@ $("copyBtn").addEventListener("click", () => {
   );
 
   showToast("Command copied");
+});
+
+function runPracticeCommand() {
+  const input = $("commandInput").value.trim().toLowerCase();
+  const check = scenarios[activeScenario].checks[current];
+  const expected = check.command.toLowerCase();
+  const output = $("practiceOutput");
+
+  if (!input) {
+    output.textContent = "Type a command first. Try the command shown above or select a suggestion.";
+  } else if (input === "help") {
+    output.textContent = "Available practice commands: ipconfig /all, ping, nslookup, curl, help";
+  } else if (commandMatches(input, expected)) {
+    output.textContent = `${check.command}\n${check.output}\n\nWhat this means: ${check.meaning}`;
+  } else {
+    output.textContent = `Command not available for this check.\n\nTry: ${check.command}\nOr select one of the suggestions below.`;
+  }
+
+  output.classList.remove("hidden");
+}
+
+function commandMatches(input, expected) {
+  if (input === expected || input.startsWith(`${expected} `)) return true;
+  if (expected.startsWith("ping <") && input.startsWith("ping ")) return true;
+  if (expected.startsWith("check ") && input.startsWith("check ")) return true;
+  if (expected.startsWith("print ") && input.startsWith("print ")) return true;
+  return false;
+}
+
+$("runCommandBtn").addEventListener("click", runPracticeCommand);
+
+$("commandInput").addEventListener("keydown", event => {
+  if (event.key === "Enter") runPracticeCommand();
+});
+
+document.querySelectorAll("[data-command-suggestion]").forEach(button => {
+  button.addEventListener("click", () => {
+    $("commandInput").value = button.dataset.commandSuggestion;
+    runPracticeCommand();
+  });
 });
 
 function resetCase() {
