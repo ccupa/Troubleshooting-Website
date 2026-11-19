@@ -131,6 +131,7 @@
         <div>
           <p class="eyebrow">PROBLEM LIBRARY</p>
           <h2>Choose a support ticket to practice.</h2>
+
           <p>
             Start with the symptom in plain language, then reveal the technical
             evidence that helps a new technician find the cause.
@@ -144,29 +145,45 @@
       </div>
 
       <div class="category-row" aria-label="Problem categories">
-        <button class="category-chip active" data-category="all" aria-pressed="true">
+        <button
+          class="category-chip active"
+          data-category="all"
+          aria-pressed="true">
           All problems
         </button>
 
-        <button class="category-chip" data-category="connectivity" aria-pressed="false">
+        <button
+          class="category-chip"
+          data-category="connectivity"
+          aria-pressed="false">
           Connectivity
         </button>
 
-        <button class="category-chip" data-category="hardware" aria-pressed="false">
+        <button
+          class="category-chip"
+          data-category="hardware"
+          aria-pressed="false">
           Hardware
         </button>
 
-        <button class="category-chip" data-category="accounts" aria-pressed="false">
+        <button
+          class="category-chip"
+          data-category="accounts"
+          aria-pressed="false">
           Accounts
         </button>
 
-        <button class="category-chip" data-category="applications" aria-pressed="false">
+        <button
+          class="category-chip"
+          data-category="applications"
+          aria-pressed="false">
           Applications
         </button>
       </div>
 
       <div class="problem-grid">
-        <button class="problem-card featured-problem"
+        <button
+          class="problem-card featured-problem"
           data-scenario="internet"
           data-category="connectivity">
 
@@ -183,7 +200,8 @@
           <span class="problem-action">Start scenario →</span>
         </button>
 
-        <button class="problem-card featured-problem"
+        <button
+          class="problem-card featured-problem"
           data-scenario="printer"
           data-category="hardware">
 
@@ -200,7 +218,8 @@
           <span class="problem-action">Start scenario →</span>
         </button>
 
-        <button class="problem-card"
+        <button
+          class="problem-card"
           data-scenario="account"
           data-category="accounts">
 
@@ -217,7 +236,8 @@
           <span class="problem-action">Start scenario →</span>
         </button>
 
-        <button class="problem-card"
+        <button
+          class="problem-card"
           data-scenario="application"
           data-category="applications">
 
@@ -434,119 +454,6 @@
         </div>
       </section>
 
-      <section id="completePanel" class="complete-panel hidden">
-        <div class="complete-mark">✓</div>
-
-        <p class="eyebrow">CASE COMPLETE</p>
-
-        <h2 id="completeTitle">Web access restored.</h2>
-
-        <p id="completeMessage">
-          You located the failed layer, corrected the DNS path, and verified
-          the service again.
-        </p>
-
-        <div class="resolution-summary">
-          <div>
-            <span>SYMPTOM</span>
-            <strong id="summarySymptom">
-              Websites would not load
-            </strong>
-          </div>
-
-          <div>
-            <span>ROOT CAUSE</span>
-            <strong id="summaryCause">
-              DNS resolution failure
-            </strong>
-          </div>
-
-          <div>
-            <span>FIX</span>
-
-            <strong id="summaryFix">
-              Correct DNS settings, then retest
-            </strong>
-          </div>
-        </div>
-
-        <section class="ticket-notes" aria-labelledby="ticketNotesTitle">
-          <div class="ticket-notes-heading">
-            <p class="eyebrow">DOCUMENT THE TICKET</p>
-
-            <h3 id="ticketNotesTitle">
-              Turn your evidence into a clear handoff.
-            </h3>
-
-            <p>
-              A good technician records what the user saw, what the checks
-              showed, and what restored the service.
-            </p>
-          </div>
-
-          <div class="ticket-form">
-            <label>
-              User symptom
-
-              <textarea
-                id="ticketSymptom"
-                rows="2"
-                placeholder="What did the user report?"
-              ></textarea>
-            </label>
-
-            <label>
-              Evidence found
-
-              <textarea
-                id="ticketEvidence"
-                rows="2"
-                placeholder="What result identified the failed layer?"
-              ></textarea>
-            </label>
-
-            <label>
-              Cause and fix
-
-              <textarea
-                id="ticketResolution"
-                rows="2"
-                placeholder="What caused the issue, and what fixed it?"
-              ></textarea>
-            </label>
-          </div>
-
-          <button id="saveTicketBtn" class="continue-btn">
-            Save ticket summary
-          </button>
-
-          <p id="ticketSaved" class="ticket-saved hidden" role="status">
-            Ticket summary saved for this practice session.
-          </p>
-        </section>
-
-        <div class="method-loop">
-          <span>1</span>
-          <strong>Observe</strong>
-          <b>→</b>
-
-          <span>2</span>
-          <strong>Isolate</strong>
-          <b>→</b>
-
-          <span>3</span>
-          <strong>Fix</strong>
-          <b>→</b>
-
-          <span>4</span>
-          <strong>Confirm</strong>
-        </div>
-
-        <button id="restartBtn" class="continue-btn">
-          Run the case again ↺
-        </button>
-      </section>
-
       <aside class="insight-card">
         <div class="insight-header">
           <div>
@@ -618,6 +525,118 @@
         </div>
       </aside>
     </div>
+
+    <section id="completePanel" class="complete-panel hidden">
+      <div class="complete-mark">✓</div>
+
+      <p class="eyebrow">CASE COMPLETE</p>
+
+      <h2 id="completeTitle">Web access restored.</h2>
+
+      <p id="completeMessage">
+        You located the failed layer, corrected the DNS path, and verified
+        the service again.
+      </p>
+
+      <div class="resolution-summary">
+        <div>
+          <span>SYMPTOM</span>
+          <strong id="summarySymptom">
+            Websites would not load
+          </strong>
+        </div>
+
+        <div>
+          <span>ROOT CAUSE</span>
+          <strong id="summaryCause">
+            DNS resolution failure
+          </strong>
+        </div>
+
+        <div>
+          <span>FIX</span>
+          <strong id="summaryFix">
+            Correct DNS settings, then retest
+          </strong>
+        </div>
+      </div>
+
+      <section class="ticket-notes" aria-labelledby="ticketNotesTitle">
+        <div class="ticket-notes-heading">
+          <p class="eyebrow">DOCUMENT THE TICKET</p>
+
+          <h3 id="ticketNotesTitle">
+            Turn your evidence into a clear handoff.
+          </h3>
+
+          <p>
+            A good technician records what the user saw, what the checks showed,
+            and what restored the service.
+          </p>
+        </div>
+
+        <div class="ticket-form">
+          <label>
+            User symptom
+
+            <textarea
+              id="ticketSymptom"
+              rows="2"
+              placeholder="What did the user report?"
+            ></textarea>
+          </label>
+
+          <label>
+            Evidence found
+
+            <textarea
+              id="ticketEvidence"
+              rows="2"
+              placeholder="What result identified the failed layer?"
+            ></textarea>
+          </label>
+
+          <label>
+            Cause and fix
+
+            <textarea
+              id="ticketResolution"
+              rows="2"
+              placeholder="What caused the issue, and what fixed it?"
+            ></textarea>
+          </label>
+        </div>
+
+        <button id="saveTicketBtn" class="continue-btn">
+          Save ticket summary
+        </button>
+
+        <p id="ticketSaved" class="ticket-saved hidden" role="status">
+          Ticket summary saved for this practice session.
+        </p>
+      </section>
+
+      <div class="method-loop">
+        <span>1</span>
+        <strong>Observe</strong>
+        <b>→</b>
+
+        <span>2</span>
+        <strong>Isolate</strong>
+        <b>→</b>
+
+        <span>3</span>
+        <strong>Fix</strong>
+        <b>→</b>
+
+        <span>4</span>
+        <strong>Confirm</strong>
+      </div>
+
+      <button id="restartBtn" class="continue-btn">
+        Run the case again ↺
+      </button>
+    </section>
 
     <section id="conceptsView" class="alternate-view hidden">
       <p class="eyebrow">CORE CONCEPTS</p>
