@@ -1,1 +1,102 @@
-.evidence-meaning{margin-bottom:8px}.evidence-meaning::first-line{font-weight:500}.method-loop{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 auto 24px;padding:13px;border:1px solid #e0ebe3;border-radius:8px;background:#f7fbf8;color:#718078;font-size:10px}.method-loop span{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#d9ede6;color:#0e5e5b;font-weight:700}.method-loop strong{color:#344c42;font-size:10px}.method-loop b{color:#a6b5ac;font-size:13px}.dark-mode .method-loop{background:#20322f;border-color:#38514a;color:#a6b8ae}.dark-mode .method-loop span{background:#28554b;color:#67c8b0}.dark-mode .method-loop strong{color:#edf6f0}@media(max-width:620px){.method-loop{gap:5px}.method-loop strong{font-size:9px}.method-loop b{font-size:11px}}
+.prediction-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -7px 0 17px;
+  color: #0e5e5b;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.prediction-note::before {
+  content: "↳";
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d9ede6;
+  color: #0e5e5b;
+  font-size: 12px;
+}
+
+.evidence-meaning {
+  margin-bottom: 8px;
+}
+
+.evidence-meaning::first-line {
+  font-weight: 500;
+}
+
+.method-loop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 0 auto 24px;
+  padding: 13px;
+  border: 1px solid #e0ebe3;
+  border-radius: 8px;
+  background: #f7fbf8;
+  color: #718078;
+  font-size: 10px;
+}
+
+.method-loop span {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #d9ede6;
+  color: #0e5e5b;
+  font-weight: 700;
+}
+
+.method-loop strong {
+  color: #344c42;
+  font-size: 10px;
+}
+
+.method-loop b {
+  color: #a6b5ac;
+  font-size: 13px;
+}
+
+.dark-mode .prediction-note {
+  color: #67c8b0;
+}
+
+.dark-mode .prediction-note::before {
+  background: #28554b;
+  color: #67c8b0;
+}
+
+.dark-mode .method-loop {
+  background: #20322f;
+  border-color: #38514a;
+  color: #a6b8ae;
+}
+
+.dark-mode .method-loop span {
+  background: #28554b;
+  color: #67c8b0;
+}
+
+.dark-mode .method-loop strong {
+  color: #edf6f0;
+}
+
+@media (max-width: 620px) {
+  .method-loop {
+    gap: 5px;
+  }
+
+  .method-loop strong {
+    font-size: 9px;
+  }
+
+  .method-loop b {
+    font-size: 11px;
+  }
+}
