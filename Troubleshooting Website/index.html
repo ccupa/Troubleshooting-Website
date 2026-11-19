@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="scenario.css">
   <link rel="stylesheet" href="library.css">
   <link rel="stylesheet" href="filters.css">
+  <link rel="stylesheet" href="learning.css">
 </head>
 
 <body>
@@ -336,9 +337,7 @@
           <div class="command-box">
             <span class="terminal-dot"></span>
 
-            <code id="checkCommand">
-              ipconfig /all
-            </code>
+            <code id="checkCommand">ipconfig /all</code>
 
             <button class="copy-btn" id="copyBtn">
               Copy
@@ -445,6 +444,23 @@
               Correct DNS settings, then retest
             </strong>
           </div>
+        </div>
+
+        <div class="method-loop">
+          <span>1</span>
+          <strong>Observe</strong>
+          <b>→</b>
+
+          <span>2</span>
+          <strong>Isolate</strong>
+          <b>→</b>
+
+          <span>3</span>
+          <strong>Fix</strong>
+          <b>→</b>
+
+          <span>4</span>
+          <strong>Confirm</strong>
         </div>
 
         <button id="restartBtn" class="continue-btn">

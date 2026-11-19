@@ -184,6 +184,9 @@ function render() {
 
 function showEvidence(isCorrect) {
   const check = scenarios[activeScenario].checks[current];
+  const nextStep = current < scenarios[activeScenario].checks.length - 1
+    ? `Next logical step: ${scenarios[activeScenario].checks[current + 1].title}`
+    : "Next logical step: document the evidence and close the ticket.";
 
   $("evidencePanel").classList.remove("hidden");
 
@@ -204,8 +207,8 @@ function showEvidence(isCorrect) {
     `${check.command}\n${check.output}`;
 
   $("evidenceMeaning").textContent = isCorrect
-    ? check.meaning
-    : `${check.meaning} Suggested fix: ${check.fix}`;
+    ? `${check.meaning} ${nextStep}`
+    : `${check.meaning} Suggested fix: ${check.fix} ${nextStep}`;
 
   $("continueBtn").textContent = isCorrect
     ? "Continue to next check →"
