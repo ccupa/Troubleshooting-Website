@@ -162,6 +162,18 @@ function render() {
   $("checkTitle").textContent = check.title;
   $("checkDescription").textContent = check.desc;
   $("checkCommand").textContent = check.command;
+  const isPrinter = activeScenario === "printer";
+  $("practiceTitle").textContent = isPrinter ? "PRACTICE THE CHECK" : "PRACTICE THE COMMAND";
+  $("practicePrompt").textContent = isPrinter ? "Support check:" : "PS C:\\Support>";
+  $("practiceInstruction").textContent = isPrinter
+    ? "Choose or type the support check you would use for this step."
+    : "Type the command you would run for this check.";
+  $("commandInput").placeholder = isPrinter ? "Type a support check..." : "Type a command...";
+  $("runCommandBtn").textContent = isPrinter ? "Try check" : "Run";
+  const suggestions = isPrinter
+    ? [["Check printer display", "Printer status"], ["ping PRINTER-04", "ping"], ["Get-PrintJob -PrinterName \"Office Printer 04\"", "Print queue"], ["help", "help"]]
+    : [["ipconfig /all", "ipconfig /all"], ["ping 192.168.1.1", "ping"], ["nslookup example.com", "nslookup"], ["help", "help"]];
+  ["suggestionOne", "suggestionTwo", "suggestionThree", "suggestionFour"].forEach((id, index) => { $(id).dataset.commandSuggestion = suggestions[index][0]; $(id).textContent = suggestions[index][1]; });
   $("commandInput").value = "";
   $("practiceOutput").textContent = "";
   $("practiceOutput").classList.add("hidden");
@@ -268,9 +280,13 @@ function runPracticeCommand() {
   const output = $("practiceOutput");
 
   if (!input) {
-    output.textContent = "Type a command first. Try the command shown above or select a suggestion.";
+    output.textContent = activeScenario === "printer"
+      ? "Type a support check first. Try the check shown above or select a suggestion."
+      : "Type a command first. Try the command shown above or select a suggestion.";
   } else if (input === "help") {
-    output.textContent = "Available practice commands: ipconfig /all, ping, nslookup, curl, help";
+    output.textContent = activeScenario === "printer"
+      ? "Available practice checks: check printer display, ping, print queue, print test page, help"
+      : "Available practice commands: ipconfig /all, ping, nslookup, curl, help";
   } else if (commandMatches(input, expected)) {
     output.textContent = `${check.command}\n${check.output}\n\nWhat this means: ${check.meaning}`;
   } else {

@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>PacketPath — Network troubleshooting, made orderly</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="dark.css">
@@ -50,14 +45,11 @@
       </button>
     </nav>
 
-    <div class="sidebar-label habits-label">
-      TROUBLESHOOTING HABITS
-    </div>
+    <div class="sidebar-label habits-label">TROUBLESHOOTING HABITS</div>
 
     <div class="habits-card">
       <div class="habit-item">
         <span>01</span>
-
         <div>
           <strong>Start with the symptom</strong>
           <small>Clarify what the user actually sees.</small>
@@ -66,7 +58,6 @@
 
       <div class="habit-item">
         <span>02</span>
-
         <div>
           <strong>Test one part at a time</strong>
           <small>Let each result narrow the cause.</small>
@@ -75,7 +66,6 @@
 
       <div class="habit-item">
         <span>03</span>
-
         <div>
           <strong>Confirm the fix</strong>
           <small>Test again before closing the ticket.</small>
@@ -93,12 +83,7 @@
       <div class="top-actions">
         <button class="icon-button" aria-label="Search">⌕</button>
 
-        <button
-          class="theme-toggle"
-          id="themeToggle"
-          aria-label="Switch to dark mode"
-          title="Switch to dark mode"
-        >
+        <button class="theme-toggle" id="themeToggle">
           <span class="theme-icon">☾</span>
           <span class="theme-label">Dark mode</span>
         </button>
@@ -145,9 +130,7 @@
       <div class="library-intro">
         <div>
           <p class="eyebrow">PROBLEM LIBRARY</p>
-
           <h2>Choose a support ticket to practice.</h2>
-
           <p>
             Start with the symptom in plain language, then reveal the technical
             evidence that helps a new technician find the cause.
@@ -161,53 +144,32 @@
       </div>
 
       <div class="category-row" aria-label="Problem categories">
-        <button
-          class="category-chip active"
-          data-category="all"
-          aria-pressed="true"
-        >
+        <button class="category-chip active" data-category="all" aria-pressed="true">
           All problems
         </button>
 
-        <button
-          class="category-chip"
-          data-category="connectivity"
-          aria-pressed="false"
-        >
+        <button class="category-chip" data-category="connectivity" aria-pressed="false">
           Connectivity
         </button>
 
-        <button
-          class="category-chip"
-          data-category="hardware"
-          aria-pressed="false"
-        >
+        <button class="category-chip" data-category="hardware" aria-pressed="false">
           Hardware
         </button>
 
-        <button
-          class="category-chip"
-          data-category="accounts"
-          aria-pressed="false"
-        >
+        <button class="category-chip" data-category="accounts" aria-pressed="false">
           Accounts
         </button>
 
-        <button
-          class="category-chip"
-          data-category="applications"
-          aria-pressed="false"
-        >
+        <button class="category-chip" data-category="applications" aria-pressed="false">
           Applications
         </button>
       </div>
 
       <div class="problem-grid">
-        <button
-          class="problem-card featured-problem"
+        <button class="problem-card featured-problem"
           data-scenario="internet"
-          data-category="connectivity"
-        >
+          data-category="connectivity">
+
           <span class="problem-number">01</span>
           <span class="problem-icon">⌁</span>
           <span class="problem-type">CONNECTIVITY · READY TO TRY</span>
@@ -221,11 +183,10 @@
           <span class="problem-action">Start scenario →</span>
         </button>
 
-        <button
-          class="problem-card featured-problem"
+        <button class="problem-card featured-problem"
           data-scenario="printer"
-          data-category="hardware"
-        >
+          data-category="hardware">
+
           <span class="problem-number">02</span>
           <span class="problem-icon">▣</span>
           <span class="problem-type">HARDWARE · READY TO TRY</span>
@@ -239,11 +200,10 @@
           <span class="problem-action">Start scenario →</span>
         </button>
 
-        <button
-          class="problem-card"
+        <button class="problem-card"
           data-scenario="account"
-          data-category="accounts"
-        >
+          data-category="accounts">
+
           <span class="problem-number">03</span>
           <span class="problem-icon">◎</span>
           <span class="problem-type">ACCOUNTS · COMING NEXT</span>
@@ -257,11 +217,10 @@
           <span class="problem-action">Preview scenario →</span>
         </button>
 
-        <button
-          class="problem-card"
+        <button class="problem-card"
           data-scenario="application"
-          data-category="applications"
-        >
+          data-category="applications">
+
           <span class="problem-number">04</span>
           <span class="problem-icon">◇</span>
           <span class="problem-type">APPLICATIONS · COMING NEXT</span>
@@ -292,10 +251,7 @@
         <div class="card-top">
           <div>
             <p class="eyebrow">LIVE SCENARIO</p>
-
-            <h2 id="scenarioTitle">
-              “I can’t reach the internet.”
-            </h2>
+            <h2 id="scenarioTitle">“I can’t reach the internet.”</h2>
           </div>
 
           <div class="scenario-tag">
@@ -353,9 +309,7 @@
           <div class="command-box">
             <span class="terminal-dot"></span>
 
-            <code id="checkCommand">
-              ipconfig /all
-            </code>
+            <code id="checkCommand">ipconfig /all</code>
 
             <button class="copy-btn" id="copyBtn">
               Copy
@@ -365,8 +319,11 @@
           <div class="practice-panel">
             <div class="practice-heading">
               <div>
-                <span class="check-kicker">PRACTICE THE COMMAND</span>
-                <small>
+                <span class="check-kicker" id="practiceTitle">
+                  PRACTICE THE COMMAND
+                </span>
+
+                <small id="practiceInstruction">
                   Type the command you would run for this check.
                 </small>
               </div>
@@ -375,7 +332,7 @@
             </div>
 
             <div class="practice-input-row">
-              <span class="practice-prompt">
+              <span class="practice-prompt" id="practicePrompt">
                 PS C:\Support&gt;
               </span>
 
@@ -392,19 +349,27 @@
             </div>
 
             <div class="command-suggestions">
-              <button data-command-suggestion="ipconfig /all">
+              <button
+                id="suggestionOne"
+                data-command-suggestion="ipconfig /all">
                 ipconfig /all
               </button>
 
-              <button data-command-suggestion="ping 192.168.1.1">
+              <button
+                id="suggestionTwo"
+                data-command-suggestion="ping 192.168.1.1">
                 ping
               </button>
 
-              <button data-command-suggestion="nslookup example.com">
+              <button
+                id="suggestionThree"
+                data-command-suggestion="nslookup example.com">
                 nslookup
               </button>
 
-              <button data-command-suggestion="help">
+              <button
+                id="suggestionFour"
+                data-command-suggestion="help">
                 help
               </button>
             </div>
@@ -432,11 +397,7 @@
             </button>
           </div>
 
-          <div
-            id="evidencePanel"
-            class="evidence-panel hidden"
-            aria-live="polite"
-          >
+          <div id="evidencePanel" class="evidence-panel hidden">
             <div class="evidence-heading">
               <span class="evidence-icon">✓</span>
 
@@ -473,18 +434,12 @@
         </div>
       </section>
 
-      <section
-        id="completePanel"
-        class="complete-panel hidden"
-        aria-live="polite"
-      >
+      <section id="completePanel" class="complete-panel hidden">
         <div class="complete-mark">✓</div>
 
         <p class="eyebrow">CASE COMPLETE</p>
 
-        <h2 id="completeTitle">
-          Web access restored.
-        </h2>
+        <h2 id="completeTitle">Web access restored.</h2>
 
         <p id="completeMessage">
           You located the failed layer, corrected the DNS path, and verified
@@ -508,6 +463,7 @@
 
           <div>
             <span>FIX</span>
+
             <strong id="summaryFix">
               Correct DNS settings, then retest
             </strong>
@@ -621,7 +577,9 @@
       <div class="concept-grid">
         <div class="concept-card">
           <span>01</span>
+
           <h3>Device</h3>
+
           <p>
             Is the adapter enabled? Did the device receive an IP address?
           </p>
@@ -629,7 +587,9 @@
 
         <div class="concept-card">
           <span>02</span>
+
           <h3>Local network</h3>
+
           <p>
             Can the device reach its default gateway and local services?
           </p>
@@ -637,7 +597,9 @@
 
         <div class="concept-card">
           <span>03</span>
+
           <h3>Beyond the LAN</h3>
+
           <p>
             Does DNS resolve names? Can traffic leave through the router?
           </p>
@@ -657,6 +619,7 @@
       <div class="command-list">
         <div>
           <code>ipconfig /all</code>
+
           <span>
             What IP, gateway, and DNS settings did the device receive?
           </span>
@@ -664,6 +627,7 @@
 
         <div>
           <code>ping 192.168.1.1</code>
+
           <span>
             Can the device reach its local default gateway?
           </span>
@@ -671,6 +635,7 @@
 
         <div>
           <code>nslookup example.com</code>
+
           <span>
             Can DNS translate a name into an address?
           </span>
