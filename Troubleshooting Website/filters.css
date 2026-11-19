@@ -12,3 +12,8 @@
   border-color: #67c8b0;
   color: #67c8b0;
 }
+
+/* Makes filtered cards disappear correctly */
+.problem-card.hidden {
+  display: none;
+}
